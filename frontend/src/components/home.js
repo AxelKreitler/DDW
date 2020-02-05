@@ -24,10 +24,15 @@ class Home extends Component{
         event.preventDefault();
         createGame(this.state.name, this.state.age, this.state.digits).then(resolve => {
             resolve.json().then(data=>{
-                this.setState({
-                    gameData: data,
-                    showGame: true
-                });
+                if(data.Error){
+                    //This should be improved
+                    throw new Error(data.Error);
+                }else{
+                    this.setState({
+                        gameData: data,
+                        showGame: true
+                    });
+                }
             });
         });
     }
