@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { playGame } from '../services/game.service';
+import './simple.css';
+import { Button } from 'react-bootstrap';
 
 class Game extends Component{
     constructor(props){
@@ -45,12 +47,13 @@ class Game extends Component{
                 Estimated year of birth: {this.state.yearOfBirth}
                 <hr></hr>
                 <form onSubmit={this.play.bind(this)}>
-                    <label>Try:  
-                        <input type="number" name="attempt" value={this.state.attempt} placeholder="attempt" onChange={this.handleChange.bind(this)}></input>
+                    <label>Attempt:  
+                        <input className="form-control" maxLength={this.state.secretNumber.length} minLength={this.state.secretNumber.length} type="text" name="attempt" value={this.state.attempt} placeholder="attempt" onChange={this.handleChange.bind(this)}></input>
                     </label>
-                    {this.state.myAttempt.resolved ? null : <input type="submit"></input>}
+                    <br></br>
+                    {this.state.myAttempt.resolved ? null : <Button type="submit" variant="primary">Try</Button> }
                 </form>
-                {this.state.myAttempt.message ?<div>message: {this.state.myAttempt.message} </div> :null}
+                {this.state.myAttempt.message ?<div> <h3 className={this.state.myAttempt.resolved ? "text-success" : "text-wrong"}>{this.state.myAttempt.message}</h3> </div> :null}
             </div>
         );
     }

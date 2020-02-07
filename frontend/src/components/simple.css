@@ -1,0 +1,11 @@
+.form-control {
+    width: 30vh !important;
+}
+
+.text-wrong{
+    color: red;
+}
+
+.text-success{
+    color: green;
+}
